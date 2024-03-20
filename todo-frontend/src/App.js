@@ -1,11 +1,55 @@
-import './App.css';
-
-function App() {
+import { useState } from 'react'
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
+import Home from './components/Home.js'
+import Signup from './components/Signup.js'
+import Login from './components/Login.js'
+import ProtectedRoutes from './ProtectedRoutes'
+import './App.css'
+const App = () => {
+  const [userName, setUserName] = useState('')
+  const [email, setEmail] = useState('')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   return (
-    <div className="App">
-        Hello!
-    </div>
-  );
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <Signup
+                userName={userName}
+                setUserName={setUserName}
+                email={email}
+                setEmail={setEmail}
+                setIsAuthenticated={setIsAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login
+                userName={userName}
+                setUserName={setUserName}
+                setEmail={setEmail}
+                setIsAuthenticated={setIsAuthenticated}
+              />
+            }
+          />
+          <Route
+            element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}
+          >
+            <Route
+              exact
+              path={`/users/${userName}`}
+              element={<Home userName={userName} email={email} />}
+            />
+          </Route>
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+export default App
