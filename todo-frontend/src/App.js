@@ -6,9 +6,8 @@ import Login from './components/Login.js'
 import ProtectedRoutes from './ProtectedRoutes'
 import './App.css'
 const App = () => {
-  const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [token, setToken] = useState(false)
   return (
     <>
       <BrowserRouter>
@@ -17,11 +16,9 @@ const App = () => {
             path="/signup"
             element={
               <Signup
-                userName={userName}
-                setUserName={setUserName}
                 email={email}
                 setEmail={setEmail}
-                setIsAuthenticated={setIsAuthenticated}
+                setToken={setToken}
               />
             }
           />
@@ -29,21 +26,16 @@ const App = () => {
             path="/login"
             element={
               <Login
-                userName={userName}
-                setUserName={setUserName}
+                email={email}
                 setEmail={setEmail}
-                setIsAuthenticated={setIsAuthenticated}
+                setToken={setToken}
               />
             }
           />
           <Route
-            element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}
+            element={<ProtectedRoutes token={token} />}
           >
-            <Route
-              exact
-              path={`/users/${userName}`}
-              element={<Home userName={userName} email={email} />}
-            />
+            <Route exact path="/home" element={<Home email={email} token={token} />} />
           </Route>
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
