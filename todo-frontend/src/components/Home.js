@@ -34,8 +34,10 @@ const Home = ({ email, token }) => {
   return (
     <div className="home">
       <Header email={email} />
-      <TaskList token={token} tasks={tasks} setTasks={setTasks} />
-      <NewTaskForm token={token} setTasks={setTasks} />
+      <div className="task-container">
+        <TaskList token={token} tasks={tasks} setTasks={setTasks} />
+        <NewTaskForm token={token} setTasks={setTasks} />
+      </div>
       <Footer />
     </div>
   )
