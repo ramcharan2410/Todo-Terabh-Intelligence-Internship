@@ -41,9 +41,9 @@ select:focus {
 /************ Default Css ************/
 /* App.js */
 html{
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'Noto Sans Vithkuqi';
-    max-height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(90deg, #010206, #051132, #010206);
     color: white;
 }
@@ -52,51 +52,49 @@ html{
 .login {
     font-family: inherit;
     width: 100%;
+    min-height: 100vh;
 }
 
 .login-header {
+    font-size: inherit;
+    font-style: italic;
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 0.5em;
 }
-
+.login-title-container{
+    width: fit-content;
+    border: 3px white solid;
+    margin: 0 auto;
+}
 .login-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     display: flex;
     justify-content: center;
-    padding: 3px;
-    border-style: double;
-    border-width: 3px;
+    padding: .1em 1em .1em .5em;
+    border: 3px white solid;
+    margin: .1em;
 }
 
 .login-title:hover {
     cursor: pointer;
 }
-
-.signup-instead {
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
+.login-form-container{
+    border: 3px white solid;
+    width: 43%;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 4em;
 }
-
-.signup-instead a {
-    text-decoration: none;
-    margin-left: 0.2em;
-}
-
-.signup-instead a:visited {
-    color: blue;
-}
-
-.login-form {
+.login-form{
     background-color: inherit;
-    border: 5px double white;
-    width: 50%;
-    margin: 5em auto 0;
-    padding: 1em;
-    font-size: 1.2rem;
-    border-radius: 30px;
+    border: 3px solid white;
+    margin: .2em .3em;
+    font-size: 1.4rem;
+}
+.login-form form{
+    padding: 2.5em .7em .5em 2em;
     text-align: center;
 }
 
@@ -104,10 +102,10 @@ html{
     background-color: inherit;
     border: none;
     outline: none;
-    border-bottom: 2px solid white;
+    border-bottom: 3px solid white;
     color: white;
     min-width: 40%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: inherit;
     padding: 0.3em;
     align-items: center;
@@ -118,11 +116,22 @@ html{
 .login-form input::placeholder {
     font-size: 0.9em;
 }
-
+.errorLabel {
+    color: red;
+}
+.login-button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+}
 .login-button {
+    background-color: inherit;
+    color: white;
     font-family: inherit;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
     padding: 0.2em;
+    border: 3px solid white;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -132,20 +141,34 @@ html{
     color: white;
 }
 
-.errorLabel,
-.user-not-found,
-.invalid-password {
-    color: red;
-}
-
-.login-footer {
-    color: black;
-    font-weight: bold;
-    text-align: center;
+.signup-instead {
+    font-size: .8rem;
+    display: flex;
+    justify-content: end;
     margin-top: 1em;
+    margin-bottom: .8em;
+    margin-right: 1em;
 }
 
-/* Do something for Galaxy Fold screen! (For placeholder) */
+.signup-instead a {
+    text-decoration: none;
+    margin-left: 0.3em;
+}
+
+.signup-instead a:visited {
+    color: blue;
+}
+.login-footer {
+    font-family: inherit;
+    font-size: .7rem;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: .2em;
+}
+
 @media screen and (max-width: 348px) {
     .login-form input::placeholder {
         font-size: .8em;
@@ -159,7 +182,7 @@ html{
 }
 
 @media screen and (max-width: 768px) {
-    .login-navbar {
+    .login-header {
         flex-direction: column;
         align-items: center;
     }
@@ -171,6 +194,155 @@ html{
 
 @media screen and (max-width:818px) {
     .login-form input {
+        display: block;
+        margin-top: .2em;
+    }
+}
+
+/* Signup.js */
+.signup {
+    font-family: inherit;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.signup-header {
+    font-size: inherit;
+    font-style: italic;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+}
+.signup-title-container {
+    width: fit-content;
+    border: 3px white solid;
+    margin: 0 auto;
+}
+.signup-title {
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    padding: .1em 1em .1em .5em;
+    border: 3px white solid;
+    margin: .1em;
+}
+
+.signup-title:hover {
+    cursor: pointer;
+}
+.signup-form-container {
+    border: 3px white solid;
+    width: 43%;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 4em;
+}
+.signup-form {
+    background-color: inherit;
+    border: 3px solid white;
+    margin: .2em .3em;
+    font-size: 1.4rem;
+}
+.signup-form form {
+    padding: 2.5em .7em .5em 2em;
+    text-align: center;
+}
+.signup-form input {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid white;
+    color: white;
+    min-width: 40%;
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0.3em;
+    align-items: center;
+    margin-left: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.signup-form input::placeholder {
+    font-size: .9em;
+}
+.errorLabel {
+    color: red;
+}
+.signup-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+
+.signup-button {
+    background-color: inherit;
+    color: white;
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0.2em;
+    border: 3px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.signup-button:hover {
+    background-color: green;
+    color: #eee;
+}
+.login-instead {
+    font-size: .8rem;
+    display: flex;
+    justify-content: end;
+    margin-top: 1em;
+    margin-bottom: .8em;
+    margin-right: 1em;
+}
+
+.login-instead a {
+    text-decoration: none;
+    margin-left: .3em;
+}
+
+.login-instead a:visited {
+    color: blue;
+}
+.signup-footer {
+    font-family: inherit;
+    font-size: .7rem;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: .2em;
+}
+
+@media screen and (max-width: 348px) {
+    .signup-form input::placeholder {
+        font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .signup-form input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .signup-navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signup-form {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:818px) {
+    .signup-form input {
         display: block;
         margin-top: .2em;
     }
