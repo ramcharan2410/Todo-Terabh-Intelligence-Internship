@@ -29,9 +29,8 @@ const Login = ({ email, setEmail, setToken }) => {
         setToken(data)
         setInvalidCredentials(true)
         navigate('/home')
-      }
-      else {
-        console.log(data);
+      } else {
+        console.log(data)
         setInvalidCredentials(false)
       }
     } catch (error) {
@@ -40,11 +39,11 @@ const Login = ({ email, setEmail, setToken }) => {
   }
   return (
     <div className="login">
-      <div className="login-header">Something</div>
-      <div className="title">Todo</div>
+      <div className="login-header">Login Header</div>
+      <div className="login-title">Todo</div>
       <div className="login-form">
         <form onSubmit={(e) => handleLoginSubmit(e)}>
-          <label htmlFor="login-email">Email:</label>
+          <label htmlFor="login-email">email:</label>
           <input
             type="text"
             value={email}
@@ -58,7 +57,7 @@ const Login = ({ email, setEmail, setToken }) => {
             }}
           />
           <br />
-          <label htmlFor="login-password">Password:</label>
+          <label htmlFor="login-password">password:</label>
           <input
             type="password"
             value={password}
@@ -78,11 +77,11 @@ const Login = ({ email, setEmail, setToken }) => {
             Invalid Credentials
           </p>
           <button type="submit" className="login-button">
-            Login
+            login
           </button>
           <div className="signup-instead">
-            New user?
-            <a href="/signup">Sign up</a>
+            new user?
+            <a href="/signup">sign up</a>
           </div>
         </form>
       </div>

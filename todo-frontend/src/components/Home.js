@@ -20,12 +20,15 @@ const Home = ({ email, token }) => {
         })
         const data = await response.json()
         console.log(data)
-        if (data) {
+        if (response.ok) {
+          console.log('Tasks Fetched successfully')
           setTasks(data)
           setLoading(false)
+        } else {
+          console.log(data.detail[0].msg)
         }
       } catch (error) {
-        console.error('Error fetching books:', error)
+        console.error('Error fetching tasks:', error)
         setLoading(false)
       }
     }
@@ -35,7 +38,11 @@ const Home = ({ email, token }) => {
     <div className="home">
       <Header email={email} />
       <div className="task-container">
-        <TaskList token={token} tasks={tasks} setTasks={setTasks} />
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <TaskList token={token} tasks={tasks} setTasks={setTasks} />
+        )}
         <NewTaskForm token={token} setTasks={setTasks} />
       </div>
       <Footer />

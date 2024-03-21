@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Vithkuqi:wght@400..700&display=swap');
+/************ Default Css ************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+p,
+a,
+li,
+button,
+ul {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+/************ Default Css ************/
+/* App.js */
+html{
+    font-size: 20px;
+    font-family: 'Noto Sans Vithkuqi';
+    max-height: 100vh;
+    background: linear-gradient(90deg, #010206, #051132, #010206);
+    color: white;
+}
+
+/* Login.js */
+.login {
+    font-family: inherit;
+    width: 100%;
+}
+
+.login-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.login-title {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-style: double;
+    border-width: 3px;
+}
+
+.login-title:hover {
+    cursor: pointer;
+}
+
+.signup-instead {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.signup-instead a {
+    text-decoration: none;
+    margin-left: 0.2em;
+}
+
+.signup-instead a:visited {
+    color: blue;
+}
+
+.login-form {
+    background-color: inherit;
+    border: 5px double white;
+    width: 50%;
+    margin: 5em auto 0;
+    padding: 1em;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.login-form input {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid white;
+    color: white;
+    min-width: 40%;
+    font-size: 1.2rem;
+    font-family: inherit;
+    padding: 0.3em;
+    align-items: center;
+    margin-left: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.login-form input::placeholder {
+    font-size: 0.9em;
+}
+
+.login-button {
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 0.2em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: green;
+    color: white;
+}
+
+.errorLabel,
+.user-not-found,
+.invalid-password {
+    color: red;
+}
+
+.login-footer {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* Do something for Galaxy Fold screen! (For placeholder) */
+@media screen and (max-width: 348px) {
+    .login-form input::placeholder {
+        font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 416px) {
+    .login-form input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .login-navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-form {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:818px) {
+    .login-form input {
+        display: block;
+        margin-top: .2em;
+    }
+}
