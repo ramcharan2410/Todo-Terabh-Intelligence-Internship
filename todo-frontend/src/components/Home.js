@@ -1,8 +1,7 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header.js'
-import NewTaskForm from './NewTaskForm.js'
 import TaskList from './TaskList.js'
+import NewTaskForm from './NewTaskForm.js'
 import Footer from './Footer.js'
 const Home = ({ email, token }) => {
   const [tasks, setTasks] = useState([])
@@ -37,14 +36,12 @@ const Home = ({ email, token }) => {
   return (
     <div className="home">
       <Header email={email} />
-      <div className="task-container">
         {loading ? (
           <p>Loading...</p>
         ) : (
           <TaskList token={token} tasks={tasks} setTasks={setTasks} />
         )}
         <NewTaskForm token={token} setTasks={setTasks} />
-      </div>
       <Footer />
     </div>
   )

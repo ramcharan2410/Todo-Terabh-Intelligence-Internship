@@ -25,11 +25,11 @@ const Header = ({ email }) => {
     }
   }
   return (
-    <div className="home-header">
-      <div className="userName" title={email}>
-        {email}'s Tasks
+    <div className="header">
+      <div className="header-title" title={email}>
+        {email.split('@')[0]}'s Todo App
       </div>
-      <button className="logout" onClick={(e) => handleSignOut(e)}>
+      <button className="logout-button" onClick={(e) => handleSignOut(e)}>
         Logout
       </button>
     </div>

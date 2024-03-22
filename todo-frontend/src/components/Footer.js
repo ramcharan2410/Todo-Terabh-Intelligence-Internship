@@ -6,7 +6,7 @@ export default function Footer() {
     return today.getFullYear()
   }
   return (
-    <div className="footer">
+    <div className="home-footer">
       Terabh Intelligence - Copyright &copy; {getYear()}
     </div>
   )

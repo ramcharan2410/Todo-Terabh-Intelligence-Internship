@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Signup = ({ userName, setUserName, email, setEmail, setToken }) => {
+const Signup = ({ email, setEmail, setToken }) => {
   const [userExists, setUserExists] = useState(false)
   const [password, setPassword] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -48,13 +48,13 @@ const Signup = ({ userName, setUserName, email, setEmail, setToken }) => {
   }
   return (
     <div className="signup">
-      <div className="signup-header">Terabh Intelligence</div>
+      <div className="signup-header">Header</div>
       <div className="signup-title-container">
         <div className="signup-title">Todo</div>
       </div>
       <div className="signup-form-container">
         <div className="signup-form">
-          <form onSubmit={(e) => handleSignupSubmit(e)}>
+          <form>
             <label htmlFor="signup-email">email:</label>
             <input
               type="text"
@@ -121,7 +121,11 @@ const Signup = ({ userName, setUserName, email, setEmail, setToken }) => {
             </p>
           </form>
           <div className="signup-button-container">
-            <button type="submit" className="signup-button">
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={(e) => handleSignupSubmit(e)}
+            >
               signup
             </button>
           </div>

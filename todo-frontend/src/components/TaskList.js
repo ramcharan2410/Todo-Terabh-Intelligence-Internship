@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import TaskItem from './TaskItem.js'
+import NewTaskForm from './NewTaskForm.js'
 
 const TaskList = ({ token, tasks, setTasks }) => {
-
   const [selectedCategory, setSelectedCategory] = useState('All')
   const countTasksByCategory = (category) => {
     if (category === 'All') {
@@ -26,41 +26,50 @@ const TaskList = ({ token, tasks, setTasks }) => {
 
   return (
     <div className="task-list-container">
-      <div className="tasks-title">Tasks</div>
-      {/* Include how many are pending and how many are done, etc! */}
-      {/* Include motivational things like, Don't give up! (strength arm emoji!) */}
+      <div className="task-title-container">
+        <div className="task-title">Tasks</div>
+      </div>
+      <div className="quote">Don't give up! 💪</div>
       <div className="status-bar">
         <button
           onClick={() => handleCategoryClick('All')}
-          className={selectedCategory === 'All' ? 'active' : ''}
+          className={selectedCategory === 'All' ? 'all' : ''}
         >
           All: {countTasksByCategory('All')}
         </button>
         <button
           onClick={() => handleCategoryClick('Pending')}
-          className={selectedCategory === 'Pending' ? 'active' : ''}
+          className={selectedCategory === 'Pending' ? 'pending' : ''}
         >
           Pending: {countTasksByCategory('Pending')}
         </button>
         <button
           onClick={() => handleCategoryClick('Completed')}
-          className={selectedCategory === 'Completed' ? 'active' : ''}
+          className={selectedCategory === 'Completed' ? 'completed' : ''}
         >
           Completed: {countTasksByCategory('Completed')}
         </button>
       </div>
-      <div className="tasks">
-        {/* flex-direction: column */}
-        {filteredTasks.map((task) => {
-          return (
-            <TaskItem
-              token={token}
-              task={task}
-              tasks={tasks}
-              setTasks={setTasks}
-            />
-          )
-        })}
+      <div className="tasks-border-container">
+        <div className="tasks-container">
+          {/* flex-direction: column */}
+          <div className="tasks">
+            {filteredTasks.length > 0 ? (
+              filteredTasks.map((task) => (
+                <TaskItem
+                  key={task.id} // Don't forget to add a unique key prop when rendering a list of components
+                  token={token}
+                  task={task}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                />
+              ))
+            ) : (
+              <p className="no-tasks-found">No tasks found.</p>
+            )}
+          </div>
+          <NewTaskForm />
+        </div>
       </div>
     </div>
   )

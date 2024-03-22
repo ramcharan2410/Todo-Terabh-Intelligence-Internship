@@ -25,7 +25,6 @@ const Login = ({ email, setEmail, setToken }) => {
       const data = await response.json()
       console.log(data)
       if (response.ok) {
-        setEmail(data.email)
         setToken(data)
         setInvalidCredentials(true)
         navigate('/home')
@@ -39,13 +38,13 @@ const Login = ({ email, setEmail, setToken }) => {
   }
   return (
     <div className="login">
-      <div className="login-header">Terabh Intelligence</div>
+      <div className="login-header">Header</div>
       <div className="login-title-container">
         <div className="login-title">Todo</div>
       </div>
       <div className="login-form-container">
         <div className="login-form">
-          <form onSubmit={(e) => handleLoginSubmit(e)}>
+          <form>
             <label htmlFor="login-email">email:</label>
             <input
               type="text"
@@ -81,7 +80,11 @@ const Login = ({ email, setEmail, setToken }) => {
             </p>
           </form>
           <div className="login-button-container">
-            <button type="submit" className="login-button">
+            <button
+              type="submit"
+              className="login-button"
+              onClick={(e) => handleLoginSubmit(e)}
+            >
               login
             </button>
           </div>

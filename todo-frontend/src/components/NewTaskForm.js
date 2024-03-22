@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined'
+import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded'
 
 const NewTaskForm = ({ token, setTasks }) => {
   const [newTask, setNewTask] = useState({
@@ -43,7 +43,8 @@ const NewTaskForm = ({ token, setTasks }) => {
           required
         />
         <button type="submit">
-          <ArrowCircleUpOutlinedIcon />
+          Submit
+          {/* Icon is not working here! */}
         </button>
       </form>
     </div>
