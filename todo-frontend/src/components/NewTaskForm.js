@@ -11,6 +11,7 @@ const NewTaskForm = ({ token, setTasks }) => {
 
   const handleCreateTask = async (e) => {
     e.preventDefault()
+    // console.log(newTask.name)
     try {
       const response = await fetch(`${serverAddr}/create_task`, {
         method: 'POST',
@@ -18,6 +19,7 @@ const NewTaskForm = ({ token, setTasks }) => {
         body: JSON.stringify({ token, task: newTask.name }),
       })
       const data = await response.json()
+      console.log(data)
       if (response.ok) {
         setTasks((prevTasks) => [...prevTasks, newTask])
       } else {
@@ -34,7 +36,7 @@ const NewTaskForm = ({ token, setTasks }) => {
 
   return (
     <div className="new-task-form-container">
-      <form className="new-book-form" onSubmit={(e) => handleCreateTask(e)}>
+      <form className="new-task-form" onSubmit={(e) => handleCreateTask(e)}>
         <input
           className="new-task-input"
           placeholder="Enter new task here ..."

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Header from './Header.js'
 import TaskList from './TaskList.js'
-import NewTaskForm from './NewTaskForm.js'
 import Footer from './Footer.js'
 const Home = ({ email, token }) => {
   const [tasks, setTasks] = useState([])
@@ -11,7 +10,8 @@ const Home = ({ email, token }) => {
     const fetchTasks = async () => {
       try {
         const response = await fetch(`${serverAddr}/get_task`, {
-          method: 'GET',
+          // method:'GET',?
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -36,12 +36,11 @@ const Home = ({ email, token }) => {
   return (
     <div className="home">
       <Header email={email} />
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <TaskList token={token} tasks={tasks} setTasks={setTasks} />
-        )}
-        <NewTaskForm token={token} setTasks={setTasks} />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <TaskList token={token} tasks={tasks} setTasks={setTasks} />
+      )}
       <Footer />
     </div>
   )

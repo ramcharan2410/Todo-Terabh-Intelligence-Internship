@@ -480,15 +480,40 @@ html{
     min-height: 40vh;
     max-height: 60vh;
     margin: .45em;
+    position: relative;
 }
 .tasks{
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 0 2em 0 4em;
+    border: 3px solid white;
 }
 .no-tasks-found{
     text-align: center;
+    margin: 0 4em;
 }
+/* TaskItem.js */
+
+/* NewTaskForm.js */
+.new-task-form-container{
+    width: 100%;
+    position:absolute;
+    bottom: 0;
+    margin: 0 4em;
+    margin-bottom: 1.3em;
+}
+.new-task-form{
+    font-family: inherit;
+    font-size: 1rem;
+    min-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+}
+.new-task-input{
+
+}
+
 /* Footer.js */
 .home-footer{
     font-family: inherit;

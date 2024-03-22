@@ -53,9 +53,9 @@ const TaskList = ({ token, tasks, setTasks }) => {
       <div className="tasks-border-container">
         <div className="tasks-container">
           {/* flex-direction: column */}
-          <div className="tasks">
             {filteredTasks.length > 0 ? (
-              filteredTasks.map((task) => (
+          <div className="tasks">
+              {filteredTasks.map((task) => (
                 <TaskItem
                   key={task.id} // Don't forget to add a unique key prop when rendering a list of components
                   token={token}
@@ -63,12 +63,12 @@ const TaskList = ({ token, tasks, setTasks }) => {
                   tasks={tasks}
                   setTasks={setTasks}
                 />
-              ))
+              ))}
+          </div>
             ) : (
               <p className="no-tasks-found">No tasks found.</p>
             )}
-          </div>
-          <NewTaskForm />
+          <NewTaskForm token={token} setTasks={setTasks} />
         </div>
       </div>
     </div>
