@@ -1,27 +1,34 @@
-import React from 'react'
-import { useState } from 'react'
-import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded'
+import React, { useState } from 'react'
+import { ArrowCircleUp } from 'phosphor-react'
 
-const NewTaskForm = ({ token, setTasks }) => {
+const NewTaskForm = ({ token, tasks, setTasks }) => {
   const [newTask, setNewTask] = useState({
+    id: 0,
     name: '',
     status: 'Pending',
   })
+
   const serverAddr = 'http://127.0.0.1:8000'
+
+  const generateUniqueId = () => {
+    const maxId = Math.max(...tasks.map((task) => task.id), 0)
+    return maxId + 1
+  }
 
   const handleCreateTask = async (e) => {
     e.preventDefault()
-    // console.log(newTask.name)
+    const taskId = generateUniqueId()
+    const taskWithId = { ...newTask, id: taskId }
     try {
       const response = await fetch(`${serverAddr}/create_task`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, task: newTask.name }),
+        body: JSON.stringify({ token, task: taskWithId.name }),
       })
       const data = await response.json()
       console.log(data)
       if (response.ok) {
-        setTasks((prevTasks) => [...prevTasks, newTask])
+        setTasks((prevTasks) => [...prevTasks, taskWithId])
       } else {
         console.log(data.detail[0].msg)
       }
@@ -45,8 +52,7 @@ const NewTaskForm = ({ token, setTasks }) => {
           required
         />
         <button type="submit">
-          Submit
-          {/* Icon is not working here! */}
+          <ArrowCircleUp size={80} color="#fcfcfc" weight="fill" />
         </button>
       </form>
     </div>

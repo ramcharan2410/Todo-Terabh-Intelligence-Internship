@@ -53,8 +53,9 @@ const TaskList = ({ token, tasks, setTasks }) => {
       <div className="tasks-border-container">
         <div className="tasks-container">
           {/* flex-direction: column */}
-            {filteredTasks.length > 0 ? (
-          <div className="tasks">
+          {filteredTasks.length > 0 ? (
+            <div className="tasks">
+              {/* If exceeded, they need to be overflow and scrollbar should appear */}
               {filteredTasks.map((task) => (
                 <TaskItem
                   key={task.id} // Don't forget to add a unique key prop when rendering a list of components
@@ -64,11 +65,11 @@ const TaskList = ({ token, tasks, setTasks }) => {
                   setTasks={setTasks}
                 />
               ))}
-          </div>
-            ) : (
-              <p className="no-tasks-found">No tasks found.</p>
-            )}
-          <NewTaskForm token={token} setTasks={setTasks} />
+            </div>
+          ) : (
+            <p className="no-tasks-found">No tasks found.</p>
+          )}
+          <NewTaskForm token={token} tasks={tasks} setTasks={setTasks} />
         </div>
       </div>
     </div>

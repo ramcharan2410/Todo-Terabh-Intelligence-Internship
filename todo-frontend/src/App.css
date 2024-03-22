@@ -494,10 +494,18 @@ html{
     margin: 0 4em;
 }
 /* TaskItem.js */
+.task-item-container{
 
+}
+.task-item-container button{
+    font-family: inherit;
+    background-color: inherit;
+    border: none;
+    color: white;
+}
 /* NewTaskForm.js */
 .new-task-form-container{
-    width: 100%;
+    width: 90%;
     position:absolute;
     bottom: 0;
     margin: 0 4em;
@@ -506,12 +514,22 @@ html{
 .new-task-form{
     font-family: inherit;
     font-size: 1rem;
-    min-height: 10vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .new-task-input{
-
+    width: 90%;
+    font-family: inherit;
+    font-size: 1.5rem;
+    background-color: inherit;
+    border: 3px solid white;
+    color: white;
+    padding-left: .3em;
+}
+.new-task-form button{
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
 }
 
 /* Footer.js */

@@ -7,7 +7,7 @@ import ProtectedRoutes from './ProtectedRoutes'
 import './App.css'
 const App = () => {
   const [email, setEmail] = useState('')
-  const [token, setToken] = useState(false)
+  const [token, setToken] = useState('')
   return (
     <>
       <BrowserRouter>

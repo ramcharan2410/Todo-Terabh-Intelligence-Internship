@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
+import { X, Check, TrashSimple } from 'phosphor-react'
 
 const TaskItem = ({ token, task, tasks, setTasks }) => {
   const [isEditable, setIsEditable] = useState(false)
@@ -9,32 +7,34 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
   const [updateButton, setUpdateButton] = useState('Edit')
   const serverAddr = 'http://127.0.0.1:8000'
   const inputRef = useRef(null)
+
   useEffect(() => {
     if (isEditable && inputRef.current) {
       inputRef.current.focus()
     }
   }, [isEditable])
-  const handleUpdateClick = (e) => {
+
+  const handleUpdateClick = async (e) => {
     setIsEditable((current) => !current)
-    setUpdateButton((current) => {
-      if (current === 'Edit') {
-        return 'Confirm'
-      } else {
-        return 'Edit'
-      }
-    })
+    setUpdateButton((current) => (current === 'Edit' ? 'Confirm' : 'Edit'))
+
+    if (inputValue !== '') {
+      await handleTaskUpdate()
+    }
   }
-  const handleEnterKeyPress = (e) => {
+
+  const handleEnterKeyPress = async (e) => {
     if (e.key === 'Enter') {
       setIsEditable((current) => !current)
       setUpdateButton('Edit')
+
+      if (inputValue !== '') {
+        await handleTaskUpdate()
+      }
     }
   }
-  const handleTaskUpdate = async (e) => {
-    const inputValue = e.target.value
-    if (inputValue === '') {
-      return
-    }
+
+  const handleTaskUpdate = async () => {
     const updatedTask = { ...task, name: inputValue }
 
     try {
@@ -44,7 +44,6 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ token, task: updatedTask, id: task.id }),
-        // id should be integer
       })
 
       const data = await response.json()
@@ -63,6 +62,7 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
       console.error('Error updating Task:', error.message)
     }
   }
+
   const handleTaskDone = async (e) => {
     try {
       const response = await fetch(`${serverAddr}/done_task`, {
@@ -70,7 +70,7 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token, id: task.id }),
+        body: JSON.stringify({ token, id: parseInt(task.id) }),
       })
 
       const data = await response.json()
@@ -116,6 +116,7 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
       console.error('Error deleting task:', error.message)
     }
   }
+
   return (
     <div className="task-item-container">
       <div className="task-info">
@@ -123,7 +124,7 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
           className="task-input"
           type="text"
           value={inputValue}
-          onChange={(e) => handleTaskUpdate(e)}
+          onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => handleEnterKeyPress(e)}
           ref={inputRef}
         />
@@ -138,13 +139,13 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
       </button>
       <button onClick={(e) => handleTaskDone(e)}>
         {task.status === 'Pending' ? (
-          <ClearOutlinedIcon />
+          <X size={32} color="#fcfcfc" weight="bold" />
         ) : (
-          <DoneOutlinedIcon />
+          <Check size={32} color="#fcfcfc" weight="bold" />
         )}
       </button>
       <button onClick={(e) => handleTaskDelete(e)}>
-        <DeleteOutlinedIcon />
+        <TrashSimple size={32} color="#fcfcfc" weight="fill" />
       </button>
     </div>
   )
