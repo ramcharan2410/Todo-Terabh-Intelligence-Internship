@@ -474,34 +474,65 @@ html{
 .tasks-border-container{
     margin-top: 1em;
     border: 3px solid white;
+    height: 55vh;
 }
 .tasks-container{
     border: 3px solid white;
-    min-height: 40vh;
-    max-height: 60vh;
+    min-height: 51.5vh;
     margin: .45em;
     position: relative;
 }
 .tasks{
-    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 0 2em 0 4em;
-    border: 3px solid white;
+    margin: 0 auto;
+    width: 90%;
+    margin-left:4em;
+    margin-top: 1.5em;
 }
 .no-tasks-found{
     text-align: center;
     margin: 0 4em;
+    margin-top: 2em;
+    font-style: italic;
 }
 /* TaskItem.js */
 .task-item-container{
-
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
-.task-item-container button{
+.task-info{
+    color: white;
+    width: 70%;
+}
+.task-item-container span{
     font-family: inherit;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+}
+.task-input{
+    width: 100%;
+    font-family: inherit;
+    font-size: 1.3rem;
     background-color: inherit;
     border: none;
     color: white;
+}
+.task-name{
+    font-size: 1.3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.task-item-container button{
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: inherit;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 /* NewTaskForm.js */
 .new-task-form-container{

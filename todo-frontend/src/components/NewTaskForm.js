@@ -9,26 +9,30 @@ const NewTaskForm = ({ token, tasks, setTasks }) => {
   })
 
   const serverAddr = 'http://127.0.0.1:8000'
-
-  const generateUniqueId = () => {
-    const maxId = Math.max(...tasks.map((task) => task.id), 0)
-    return maxId + 1
+  const handleEnterKeyPress = async (e) => {
+    if (e.key === 'Enter') {
+      await handleCreateTask(e)
+    }
   }
-
   const handleCreateTask = async (e) => {
     e.preventDefault()
-    const taskId = generateUniqueId()
-    const taskWithId = { ...newTask, id: taskId }
+    const trimmedTaskName = newTask.name.trim()
+    if (trimmedTaskName === '') {
+      return
+    }
     try {
       const response = await fetch(`${serverAddr}/create_task`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, task: taskWithId.name }),
+        body: JSON.stringify({ token, task: trimmedTaskName }),
       })
       const data = await response.json()
       console.log(data)
       if (response.ok) {
+        const taskWithId = { ...newTask, id: data.id }
+        console.log(taskWithId)
         setTasks((prevTasks) => [...prevTasks, taskWithId])
+        setNewTask((prevState) => ({ ...prevState, name: '', id: 0 }))
       } else {
         console.log(data.detail[0].msg)
       }
@@ -49,6 +53,7 @@ const NewTaskForm = ({ token, tasks, setTasks }) => {
           placeholder="Enter new task here ..."
           value={newTask.name}
           onChange={(e) => handleNewTaskChange(e)}
+          onKeyDown={(e) => handleEnterKeyPress(e)}
           required
         />
         <button type="submit">

@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import TaskItem from './TaskItem.js'
 import NewTaskForm from './NewTaskForm.js'
 
 const TaskList = ({ token, tasks, setTasks }) => {
   const [selectedCategory, setSelectedCategory] = useState('All')
+
   const countTasksByCategory = (category) => {
     if (category === 'All') {
       return tasks.length
@@ -14,14 +14,28 @@ const TaskList = ({ token, tasks, setTasks }) => {
     })
     return filteredTasks.length
   }
+
   const filteredTasks = tasks.filter((task) => {
     if (selectedCategory === 'All') {
       return true
     }
     return task.status === selectedCategory
   })
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
+  }
+
+  let taskNumber = 0
+
+  let noTasksMessage = 'No tasks found.'
+  if (selectedCategory === 'Pending' && countTasksByCategory('Pending') === 0) {
+    noTasksMessage = 'No pending tasks found. You did it! 🎉'
+  } else if (
+    selectedCategory === 'Completed' &&
+    countTasksByCategory('Completed') === 0
+  ) {
+    noTasksMessage = 'No completed tasks found.'
   }
 
   return (
@@ -52,22 +66,25 @@ const TaskList = ({ token, tasks, setTasks }) => {
       </div>
       <div className="tasks-border-container">
         <div className="tasks-container">
-          {/* flex-direction: column */}
           {filteredTasks.length > 0 ? (
             <div className="tasks">
               {/* If exceeded, they need to be overflow and scrollbar should appear */}
-              {filteredTasks.map((task) => (
-                <TaskItem
-                  key={task.id} // Don't forget to add a unique key prop when rendering a list of components
-                  token={token}
-                  task={task}
-                  tasks={tasks}
-                  setTasks={setTasks}
-                />
-              ))}
+              {filteredTasks.map((task) => {
+                taskNumber++
+                return (
+                  <TaskItem
+                    key={task.id}
+                    token={token}
+                    task={task}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    taskNumber={taskNumber}
+                  />
+                )
+              })}
             </div>
           ) : (
-            <p className="no-tasks-found">No tasks found.</p>
+            <p className="no-tasks-found">{noTasksMessage}</p>
           )}
           <NewTaskForm token={token} tasks={tasks} setTasks={setTasks} />
         </div>

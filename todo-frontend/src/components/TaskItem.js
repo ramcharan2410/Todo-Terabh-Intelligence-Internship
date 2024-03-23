@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { X, Check, TrashSimple } from 'phosphor-react'
+import { Check, TrashSimple } from 'phosphor-react'
 
-const TaskItem = ({ token, task, tasks, setTasks }) => {
+const TaskItem = ({ token, task, tasks, setTasks, taskNumber }) => {
   const [isEditable, setIsEditable] = useState(false)
   const [inputValue, setInputValue] = useState(task.name)
-  const [updateButton, setUpdateButton] = useState('Edit')
+  const [previousName, setPreviousName] = useState('')
   const serverAddr = 'http://127.0.0.1:8000'
   const inputRef = useRef(null)
 
@@ -14,26 +14,16 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
     }
   }, [isEditable])
 
-  const handleUpdateClick = async (e) => {
-    setIsEditable((current) => !current)
-    setUpdateButton((current) => (current === 'Edit' ? 'Confirm' : 'Edit'))
-
+  const handleUpdateClick = async () => {
     if (inputValue !== '') {
       await handleTaskUpdate()
     }
   }
-
-  const handleEnterKeyPress = async (e) => {
+  const handleEnterKeyPress = async (e) => { 
     if (e.key === 'Enter') {
-      setIsEditable((current) => !current)
-      setUpdateButton('Edit')
-
-      if (inputValue !== '') {
-        await handleTaskUpdate()
-      }
+      await handleTaskNameBlur()
     }
   }
-
   const handleTaskUpdate = async () => {
     const updatedTask = { ...task, name: inputValue }
 
@@ -43,7 +33,11 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token, task: updatedTask, id: task.id }),
+        body: JSON.stringify({
+          token,
+          task: updatedTask.name,
+          id: updatedTask.id,
+        }),
       })
 
       const data = await response.json()
@@ -63,14 +57,14 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
     }
   }
 
-  const handleTaskDone = async (e) => {
+  const handleTaskDone = async () => {
     try {
       const response = await fetch(`${serverAddr}/done_task`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token, id: parseInt(task.id) }),
+        body: JSON.stringify({ token, id: task.id }),
       })
 
       const data = await response.json()
@@ -92,7 +86,7 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
     }
   }
 
-  const handleTaskDelete = async (e) => {
+  const handleTaskDelete = async () => {
     try {
       const response = await fetch(`${serverAddr}/delete_task`, {
         method: 'DELETE',
@@ -117,35 +111,49 @@ const TaskItem = ({ token, task, tasks, setTasks }) => {
     }
   }
 
+  const handleTaskNameClick = () => {
+    setIsEditable(true)
+    setPreviousName(task.name)
+  }
+
+  const handleTaskNameBlur = async () => {
+    setIsEditable(false)
+    if (inputValue === '') {
+      setInputValue(previousName)
+    } else {
+      await handleUpdateClick()
+    }
+  }
+
   return (
     <div className="task-item-container">
+      <span className="task-title">task {taskNumber}:</span>
       <div className="task-info">
-        <input
-          className="task-input"
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={(e) => handleEnterKeyPress(e)}
-          ref={inputRef}
-        />
-      </div>
-      <button
-        className="update-task"
-        onClick={(e) => {
-          handleUpdateClick(e)
-        }}
-      >
-        {updateButton}
-      </button>
-      <button onClick={(e) => handleTaskDone(e)}>
-        {task.status === 'Pending' ? (
-          <X size={32} color="#fcfcfc" weight="bold" />
+        {isEditable ? (
+          <input
+            className="task-input"
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e)=>handleEnterKeyPress(e)}
+            onBlur={handleTaskNameBlur}
+            ref={inputRef}
+          />
         ) : (
-          <Check size={32} color="#fcfcfc" weight="bold" />
+          <div className="task-name" onClick={handleTaskNameClick}>
+            {task.name}
+          </div>
+        )}
+      </div>
+      <button onClick={handleTaskDone}>
+        {task.status === 'Pending' ? (
+          <Check size={45} color="white" weight="thin" />
+        ) : (
+          <Check size={45} color="white" weight="bold" />
         )}
       </button>
-      <button onClick={(e) => handleTaskDelete(e)}>
-        <TrashSimple size={32} color="#fcfcfc" weight="fill" />
+      <button onClick={handleTaskDelete}>
+        <TrashSimple size={45} color="white" weight="bold" />
       </button>
     </div>
   )
