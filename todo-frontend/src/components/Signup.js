@@ -23,7 +23,6 @@ const Signup = ({ email, setEmail, setToken }) => {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
-    console.log(email,password);
     try {
       const response = await fetch(`${serverAddr}/signup`, {
         method: 'POST',
@@ -50,7 +49,9 @@ const Signup = ({ email, setEmail, setToken }) => {
   }
   return (
     <div className="signup">
-      <div className="signup-header">Header</div>
+      <div className="signup-header">
+        Sign up to start organizing your tasks and stay productive!
+      </div>
       <div className="signup-title-container">
         <div className="signup-title">Todo</div>
       </div>
@@ -75,14 +76,14 @@ const Signup = ({ email, setEmail, setToken }) => {
                 setUserExists(false)
               }}
             />
-            <label
+            <p
               className="errorLabel"
               style={{
                 display: emailError ? 'block' : 'none',
               }}
             >
               {emailError}
-            </label>
+            </p>
             <br />
             <label htmlFor="signup-password">password:</label>
             <input

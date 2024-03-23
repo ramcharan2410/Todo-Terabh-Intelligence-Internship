@@ -44,7 +44,6 @@ const TaskList = ({ token, tasks, setTasks }) => {
       <div className="task-title-container">
         <div className="task-title">Tasks</div>
       </div>
-      <div className="quote"></div>
       <div className="status-bar">
         <button
           onClick={() => handleCategoryClick('All')}

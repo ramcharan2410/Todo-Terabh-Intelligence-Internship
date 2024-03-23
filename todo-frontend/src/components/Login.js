@@ -38,7 +38,9 @@ const Login = ({ email, setEmail, setToken }) => {
   }
   return (
     <div className="login">
-      <div className="login-header">Header</div>
+      <div className="login-header">
+        Login to access your tasks and stay organized.
+      </div>
       <div className="login-title-container">
         <div className="login-title">Todo</div>
       </div>

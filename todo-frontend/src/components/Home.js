@@ -46,7 +46,7 @@ const Home = ({ email, token }) => {
     <div className="home">
       <Header email={email} />
       {loading ? (
-        <p>Loading...</p>
+        <div className='loading'>Loading...</div>
       ) : (
         <TaskList token={token} tasks={tasks} setTasks={setTasks} />
       )}

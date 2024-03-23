@@ -147,13 +147,13 @@ const TaskItem = ({ token, task, setTasks, taskNumber }) => {
       </div>
       <button className="done-button" onClick={handleTaskDone}>
         {task.status === 'Pending' ? (
-          <Check size={50} color="white" weight="thin" />
+          <Check size={60} color="white" weight="thin" />
         ) : (
-          <Check size={50} color="white" weight="bold" />
+          <Check size={60} color="white" weight="bold" />
         )}
       </button>
       <button onClick={handleTaskDelete}>
-        <TrashSimple size={50} color="white" weight="bold" />
+        <TrashSimple size={60} color="white" weight="bold" />
       </button>
     </div>
   )

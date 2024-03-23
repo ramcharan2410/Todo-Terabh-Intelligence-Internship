@@ -53,6 +53,7 @@ html{
     font-family: inherit;
     width: 100%;
     min-height: 100vh;
+    position: relative;
 }
 
 .login-header {
@@ -72,7 +73,7 @@ html{
     font-size: 2.5rem;
     display: flex;
     justify-content: center;
-    padding: .1em 1em .1em .5em;
+    padding: .1em .8em .1em .5em;
     border: 3px white solid;
     margin: .1em;
 }
@@ -97,20 +98,25 @@ html{
     padding: 2.5em .7em .5em 2em;
     text-align: center;
 }
-
+.login-form label {
+    width: 32%;
+    display: inline-block;
+    text-align: right;
+}
 .login-form input {
     background-color: inherit;
     border: none;
     outline: none;
     border-bottom: 3px solid white;
     color: white;
-    min-width: 40%;
     font-size: 1rem;
     font-family: inherit;
     padding: 0.3em;
-    align-items: center;
     margin-left: 0.4em;
     margin-bottom: 0.4em;
+    width: 60%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .login-form input::placeholder {
@@ -204,7 +210,8 @@ html{
 .signup {
     font-family: inherit;
     width: 100%;
-    min-height: 100vh;
+    min-height: 110vh;
+    position: relative;
 }
 
 .signup-header {
@@ -224,7 +231,7 @@ html{
     font-size: 2.5rem;
     display: flex;
     justify-content: center;
-    padding: .1em 1em .1em .5em;
+    padding: .1em .8em .1em .5em;
     border: 3px white solid;
     margin: .1em;
 }
@@ -249,19 +256,25 @@ html{
     padding: 2.5em .7em .5em 2em;
     text-align: center;
 }
+.signup-form label {
+    width: 32%;
+    display: inline-block;
+    text-align: right;
+}
 .signup-form input {
     background-color: inherit;
     border: none;
     outline: none;
     border-bottom: 3px solid white;
     color: white;
-    min-width: 40%;
     font-size: 1rem;
     font-family: inherit;
     padding: 0.3em;
-    align-items: center;
     margin-left: 0.4em;
     margin-bottom: 0.4em;
+    width: 60%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .signup-form input::placeholder {
@@ -351,7 +364,12 @@ html{
     min-height: 120vh;
     position: relative;
 }
-
+.loading{
+    width: 100%;
+    text-align: center;
+    font-family: inherit;
+    font-size: 2rem;
+}
 /* Header.js */
 .header {
     font-size: 1.5rem;
@@ -419,16 +437,12 @@ html{
     margin: 0 auto;
 }
 .task-title{
-    font-size: 2rem;
+    font-size: 2.5rem;
     display: flex;
     justify-content: center;
     padding: .2em .6em;
     border: 3px white solid;
     margin: .1em;
-}
-.quote{
-    text-align: center;
-    font-style: italic;
 }
 .status-bar {
     display: flex;
@@ -510,39 +524,45 @@ html{
     font-style: italic;
 }
 /* TaskItem.js */
-.task-item-container{
+.task-item-container {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
-.task-info{
+.task-info {
     color: white;
     width: 70%;
     margin-right: 2em;
+    display: flex;
+    align-items: start;
 }
-.task-item-container span{
+
+.task-item-container span {
     font-family: inherit;
     font-size: 1.3rem;
     font-weight: bold;
     border: none;
     padding: 0;
-    padding-right: .2em;
+    padding-right: 0.2em;
 }
-.task-input{
+
+.task-input {
     width: 100%;
     font-family: inherit;
     font-size: 1.3rem;
     background-color: inherit;
     border: none;
     color: white;
+    padding: 0;
 }
-.task-name{
+
+.task-name {
     font-size: 1.3rem;
-    height: 100%;
     display: flex;
     align-items: center;
 }
-.task-item-container button{
+
+.task-item-container button {
     font-family: inherit;
     font-size: 1rem;
     background-color: inherit;
@@ -550,7 +570,8 @@ html{
     color: white;
     cursor: pointer;
 }
-.done-button{
+
+.done-button {
     margin-right: 2em;
 }
 /* NewTaskForm.js */
