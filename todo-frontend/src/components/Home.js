@@ -10,18 +10,26 @@ const Home = ({ email, token }) => {
     const fetchTasks = async () => {
       try {
         const response = await fetch(`${serverAddr}/get_task`, {
-          // method:'GET',?
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ token }),
         })
+
         const data = await response.json()
         console.log(data)
+
         if (response.ok) {
           console.log('Tasks Fetched successfully')
-          setTasks(data)
+
+          const formattedTasks = data.map((task) => ({
+            id: task.id,
+            name: task.task,
+            status: task.is_complete ? 'Completed' : 'Pending',
+          }))
+          console.log(formattedTasks)
+          setTasks(formattedTasks)
           setLoading(false)
         } else {
           console.log(data.detail[0].msg)
@@ -31,6 +39,7 @@ const Home = ({ email, token }) => {
         setLoading(false)
       }
     }
+
     fetchTasks()
   }, [])
   return (

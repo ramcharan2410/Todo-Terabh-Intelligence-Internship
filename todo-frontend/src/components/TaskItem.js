@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Check, TrashSimple } from 'phosphor-react'
 
-const TaskItem = ({ token, task, tasks, setTasks, taskNumber }) => {
+const TaskItem = ({ token, task, setTasks, taskNumber }) => {
   const [isEditable, setIsEditable] = useState(false)
   const [inputValue, setInputValue] = useState(task.name)
   const [previousName, setPreviousName] = useState('')
@@ -19,7 +19,7 @@ const TaskItem = ({ token, task, tasks, setTasks, taskNumber }) => {
       await handleTaskUpdate()
     }
   }
-  const handleEnterKeyPress = async (e) => { 
+  const handleEnterKeyPress = async (e) => {
     if (e.key === 'Enter') {
       await handleTaskNameBlur()
     }
@@ -135,7 +135,7 @@ const TaskItem = ({ token, task, tasks, setTasks, taskNumber }) => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={(e)=>handleEnterKeyPress(e)}
+            onKeyDown={(e) => handleEnterKeyPress(e)}
             onBlur={handleTaskNameBlur}
             ref={inputRef}
           />
@@ -145,15 +145,15 @@ const TaskItem = ({ token, task, tasks, setTasks, taskNumber }) => {
           </div>
         )}
       </div>
-      <button onClick={handleTaskDone}>
+      <button className="done-button" onClick={handleTaskDone}>
         {task.status === 'Pending' ? (
-          <Check size={45} color="white" weight="thin" />
+          <Check size={50} color="white" weight="thin" />
         ) : (
-          <Check size={45} color="white" weight="bold" />
+          <Check size={50} color="white" weight="bold" />
         )}
       </button>
       <button onClick={handleTaskDelete}>
-        <TrashSimple size={45} color="white" weight="bold" />
+        <TrashSimple size={50} color="white" weight="bold" />
       </button>
     </div>
   )

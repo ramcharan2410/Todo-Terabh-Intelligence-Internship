@@ -118,6 +118,7 @@ html{
 }
 .errorLabel {
     color: red;
+    font-size: .9rem;
 }
 .login-button-container{
     display: flex;
@@ -266,9 +267,6 @@ html{
 .signup-form input::placeholder {
     font-size: .9em;
 }
-.errorLabel {
-    color: red;
-}
 .signup-button-container {
     display: flex;
     justify-content: center;
@@ -350,7 +348,8 @@ html{
 
 /* Home.js */
 .home{
-    min-height: 100vh;
+    min-height: 120vh;
+    position: relative;
 }
 
 /* Header.js */
@@ -437,6 +436,7 @@ html{
     border-radius: 20px;
     width: 80%;
     margin: 0 auto;
+    margin-top: 1em;
     border: 3px solid white;
 }
 
@@ -471,16 +471,16 @@ html{
 .status-bar button.completed {
     background-color: #27ae60;
 }
-.tasks-border-container{
+.tasks-outer-container{
     margin-top: 1em;
     border: 3px solid white;
-    height: 55vh;
 }
-.tasks-container{
+.tasks-inner-container{
     border: 3px solid white;
     min-height: 51.5vh;
     margin: .45em;
     position: relative;
+    min-height: 70vh;
 }
 .tasks{
     display: flex;
@@ -489,6 +489,19 @@ html{
     width: 90%;
     margin-left:4em;
     margin-top: 1.5em;
+    max-height: 16em;
+    overflow-y: auto;
+}
+.tasks-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.tasks-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+.tasks-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
 .no-tasks-found{
     text-align: center;
@@ -505,12 +518,15 @@ html{
 .task-info{
     color: white;
     width: 70%;
+    margin-right: 2em;
 }
 .task-item-container span{
     font-family: inherit;
     font-size: 1.3rem;
     font-weight: bold;
     border: none;
+    padding: 0;
+    padding-right: .2em;
 }
 .task-input{
     width: 100%;
@@ -534,19 +550,24 @@ html{
     color: white;
     cursor: pointer;
 }
+.done-button{
+    margin-right: 2em;
+}
 /* NewTaskForm.js */
 .new-task-form-container{
     width: 90%;
     position:absolute;
     bottom: 0;
     margin: 0 4em;
-    margin-bottom: 1.3em;
+    margin-bottom: 1em;
 }
 .new-task-form{
     font-family: inherit;
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
+    display: flex;
+    align-items: center;
 }
 .new-task-input{
     width: 90%;
@@ -555,7 +576,10 @@ html{
     background-color: inherit;
     border: 3px solid white;
     color: white;
+    padding: .2em 0;
     padding-left: .3em;
+    height: max-content;
+    
 }
 .new-task-form button{
     background-color: inherit;

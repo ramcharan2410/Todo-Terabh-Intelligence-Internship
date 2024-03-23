@@ -28,14 +28,15 @@ const TaskList = ({ token, tasks, setTasks }) => {
 
   let taskNumber = 0
 
-  let noTasksMessage = 'No tasks found.'
+  let noTasksMessage =
+    "No tasks found. 🚀 Let's kick off your journey by adding a new task!"
   if (selectedCategory === 'Pending' && countTasksByCategory('Pending') === 0) {
     noTasksMessage = 'No pending tasks found. You did it! 🎉'
   } else if (
     selectedCategory === 'Completed' &&
     countTasksByCategory('Completed') === 0
   ) {
-    noTasksMessage = 'No completed tasks found.'
+    noTasksMessage = "No completed tasks found. Don't give up! 💪"
   }
 
   return (
@@ -43,7 +44,7 @@ const TaskList = ({ token, tasks, setTasks }) => {
       <div className="task-title-container">
         <div className="task-title">Tasks</div>
       </div>
-      <div className="quote">Don't give up! 💪</div>
+      <div className="quote"></div>
       <div className="status-bar">
         <button
           onClick={() => handleCategoryClick('All')}
@@ -64,24 +65,24 @@ const TaskList = ({ token, tasks, setTasks }) => {
           Completed: {countTasksByCategory('Completed')}
         </button>
       </div>
-      <div className="tasks-border-container">
-        <div className="tasks-container">
+      <div className="tasks-outer-container">
+        <div className="tasks-inner-container">
           {filteredTasks.length > 0 ? (
-            <div className="tasks">
-              {/* If exceeded, they need to be overflow and scrollbar should appear */}
-              {filteredTasks.map((task) => {
-                taskNumber++
-                return (
-                  <TaskItem
-                    key={task.id}
-                    token={token}
-                    task={task}
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    taskNumber={taskNumber}
-                  />
-                )
-              })}
+            <div className="tasks-container">
+              <div className="tasks">
+                {filteredTasks.map((task) => {
+                  taskNumber++
+                  return (
+                    <TaskItem
+                      key={task.id}
+                      token={token}
+                      task={task}
+                      setTasks={setTasks}
+                      taskNumber={taskNumber}
+                    />
+                  )
+                })}
+              </div>
             </div>
           ) : (
             <p className="no-tasks-found">{noTasksMessage}</p>

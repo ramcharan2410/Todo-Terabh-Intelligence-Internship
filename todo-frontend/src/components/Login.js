@@ -26,11 +26,11 @@ const Login = ({ email, setEmail, setToken }) => {
       console.log(data)
       if (response.ok) {
         setToken(data)
-        setInvalidCredentials(true)
+        setInvalidCredentials(false)
         navigate('/home')
       } else {
-        console.log(data)
-        setInvalidCredentials(false)
+        console.log(data.detail[0].msg)
+        setInvalidCredentials(true)
       }
     } catch (error) {
       console.log('Error while Login: ', error.message)
@@ -76,7 +76,7 @@ const Login = ({ email, setEmail, setToken }) => {
               className="errorLabel"
               style={{ display: invalidCredentials ? 'block' : 'none' }}
             >
-              Invalid Credentials
+              Invalid login credentials
             </p>
           </form>
           <div className="login-button-container">

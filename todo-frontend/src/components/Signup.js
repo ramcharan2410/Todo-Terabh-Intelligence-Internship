@@ -23,6 +23,7 @@ const Signup = ({ email, setEmail, setToken }) => {
       setPasswordError('The password must be 8 characters or longer')
       return
     }
+    console.log(email,password);
     try {
       const response = await fetch(`${serverAddr}/signup`, {
         method: 'POST',
@@ -36,11 +37,12 @@ const Signup = ({ email, setEmail, setToken }) => {
       const data = await response.json()
       console.log(data)
       if (response.ok) {
+        setUserExists(false)
         setToken(data)
         navigate('/home')
       } else {
-        console.log(data)
-        setToken(data)
+        setUserExists(true)
+        setToken('')
       }
     } catch (error) {
       console.log('Error while Login: ', error.message)
@@ -117,7 +119,7 @@ const Signup = ({ email, setEmail, setToken }) => {
                 display: userExists ? 'block' : 'none',
               }}
             >
-              user already registered
+              User already registered
             </p>
           </form>
           <div className="signup-button-container">
