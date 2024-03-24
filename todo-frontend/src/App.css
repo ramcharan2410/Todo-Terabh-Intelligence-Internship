@@ -58,11 +58,18 @@ html{
 
 .login-header {
     font-size: inherit;
-    font-style: italic;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.5em;
+}
+.login-header span{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.login-header div{
+    font-style: italic;
 }
 .login-title-container{
     width: fit-content;
@@ -216,11 +223,20 @@ html{
 
 .signup-header {
     font-size: inherit;
-    font-style: italic;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.5em;
+}
+
+.signup-header span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.signup-header div {
+    font-style: italic;
 }
 .signup-title-container {
     width: fit-content;
@@ -368,7 +384,8 @@ html{
     width: 100%;
     text-align: center;
     font-family: inherit;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-style: italic;
 }
 /* Header.js */
 .header {
@@ -503,7 +520,7 @@ html{
     width: 90%;
     margin-left:4em;
     margin-top: 1.5em;
-    max-height: 17.5em;
+    max-height: 15em;
     overflow-y: auto;
 }
 .tasks::-webkit-scrollbar {
@@ -542,8 +559,9 @@ html{
     align-items: start;
 }
 .task-item-container span {
+    width: 10%;
     font-family: inherit;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     border: none;
     padding: 0;
@@ -554,7 +572,7 @@ html{
 .task-name {
     width: 100%;
     font-family: inherit;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     background-color: inherit;
     border: none;
     color: white;

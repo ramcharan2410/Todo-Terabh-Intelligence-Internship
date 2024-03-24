@@ -27,7 +27,7 @@ const Header = ({ email }) => {
   return (
     <div className="header">
       <div className="header-title" title={email}>
-        {email.split('@')[0]}'s Todo App
+        Welcome {email.split('@')[0]}
       </div>
       <button className="logout-button" onClick={(e) => handleSignOut(e)}>
         Logout

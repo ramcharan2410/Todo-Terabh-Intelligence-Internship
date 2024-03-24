@@ -52,7 +52,8 @@ const Signup = ({ email, setEmail, setToken }) => {
   return (
     <div className="signup">
       <div className="signup-header">
-        Sign up to start organizing your tasks and stay productive!
+        <span>Terabh Intelligence</span>
+        <div>Sign up to start organizing your tasks and stay productive!</div>
       </div>
       <div className="signup-title-container">
         <div className="signup-title">Todo</div>
