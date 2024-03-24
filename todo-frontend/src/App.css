@@ -182,34 +182,44 @@ html{
     text-align: center;
     margin-bottom: .2em;
 }
-
-@media screen and (max-width: 348px) {
-    .login-form input::placeholder {
-        font-size: .8em;
+@media (max-width:1464px){
+    .login-form form{
+        padding-left: .2em;
+        padding-right:.5em;
+    }
+    .login-form label {
+        width: fit-content;
+        text-align: center;
+    }
+    .login-form input{
+        display: block;
+        width: 80%;
+        margin: 0 auto;
     }
 }
+@media (max-width: 940px) {
+    .login-header{
+        display: flex;
+        flex-direction: column;
+    }
+    .login-form-container {
+        width: 90%;
+    }
 
-@media screen and (max-width: 416px) {
+    .login-form label {
+        width: fit-content;
+        text-align: center;
+    }
+
     .login-form input {
         width: 100%;
+        margin-left: 0;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .login-header {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .login-form {
-        width: 70%;
-    }
-}
-
-@media screen and (max-width:818px) {
-    .login-form input {
-        display: block;
-        margin-top: .2em;
+@media (max-width: 480px) {
+    .login{
+        min-height: 110vh;
     }
 }
 
@@ -345,33 +355,48 @@ html{
     margin-bottom: .2em;
 }
 
-@media screen and (max-width: 348px) {
-    .signup-form input::placeholder {
-        font-size: .8em;
-    }
-}
-
-@media screen and (max-width: 416px) {
-    .signup-form input {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .signup-navbar {
-        flex-direction: column;
-        align-items: center;
+@media (max-width:1464px) {
+    .signup-form form {
+        padding-left: .2em;
+        padding-right: .5em;
     }
 
-    .signup-form {
-        width: 70%;
+    .signup-form label {
+        width: fit-content;
+        text-align: center;
     }
-}
 
-@media screen and (max-width:818px) {
     .signup-form input {
         display: block;
-        margin-top: .2em;
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 940px) {
+    .signup-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signup-form-container {
+        width: 90%;
+    }
+
+    .signup-form label {
+        width: fit-content;
+        text-align: center;
+    }
+
+    .signup-form input {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    html{
+        font-size: 20px;
     }
 }
 
@@ -396,8 +421,6 @@ html{
     background-color: inherit;
     margin-bottom: .3em;
     padding: .5em;
-    position: sticky;
-    top: 0;
 }
 
 .header-title {

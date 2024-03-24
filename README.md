@@ -12,7 +12,7 @@
 
 ## Brief Description
 
-The Todo Website is a task management application designed to help users organize their daily activities and keep track of their tasks efficiently. Users can create, update, and delete tasks, mark tasks as completed, and filter tasks based on their status (pending or completed). The website provides a user-friendly interface with features such as task categorization, dynamic task creation and editing, and responsive design. It aims to enhance productivity by allowing users to prioritize their tasks and manage them effectively.
+The Todo Website is a task management application designed to help users organize their daily activities and keep track of their tasks efficiently. Users can create, update, and delete tasks, mark tasks as completed, and filter tasks based on their status (pending or completed). The website provides a user-friendly interface with features such as task categorization, dynamic task creation and editing. It aims to enhance productivity by allowing users to prioritize their tasks and manage them effectively.
 
 ## Deployment
 
@@ -78,7 +78,7 @@ Refer to the below given respective documentations for the languages used to bui
 
 ### All Tasks
 
-![All Tasks](/todo-frontend/src/imgs/05-task%20list%20page.png)
+![All Tasks](/todo-frontend/src/imgs/05-all%20tasks.png)
 
 ### Pending Tasks
 
