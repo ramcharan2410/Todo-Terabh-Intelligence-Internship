@@ -45,6 +45,8 @@ const Signup = ({ email, setEmail, setToken }) => {
       }
     } catch (error) {
       console.log('Error while Login: ', error.message)
+      setUserExists(true)
+      setToken('')
     }
   }
   return (
@@ -103,6 +105,7 @@ const Signup = ({ email, setEmail, setToken }) => {
                 } else {
                   setPasswordError('')
                 }
+                setUserExists(false)
               }}
             />
             <p

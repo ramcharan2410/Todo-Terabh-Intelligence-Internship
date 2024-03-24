@@ -69,13 +69,13 @@ const TaskList = ({ token, tasks, setTasks }) => {
           {filteredTasks.length > 0 ? (
             <div className="tasks-container">
               <div className="tasks">
-                {filteredTasks.map((task) => {
+                {filteredTasks.map((eachTask) => {
                   taskNumber++
                   return (
                     <TaskItem
-                      key={task.id}
+                      key={eachTask.id}
                       token={token}
-                      task={task}
+                      task={eachTask}
                       setTasks={setTasks}
                       taskNumber={taskNumber}
                     />

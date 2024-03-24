@@ -503,19 +503,24 @@ html{
     width: 90%;
     margin-left:4em;
     margin-top: 1.5em;
-    max-height: 16em;
+    max-height: 17.5em;
     overflow-y: auto;
 }
-.tasks-container::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+.tasks::-webkit-scrollbar {
+    width: .3em;
 }
 
-.tasks-container::-webkit-scrollbar-thumb {
-    background-color: #888;
+.tasks::-webkit-scrollbar-track {
+    background: white;
 }
 
-.tasks-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+.tasks::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+.tasks::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 .no-tasks-found{
     text-align: center;
@@ -527,7 +532,7 @@ html{
 .task-item-container {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 .task-info {
     color: white;
@@ -536,7 +541,6 @@ html{
     display: flex;
     align-items: start;
 }
-
 .task-item-container span {
     font-family: inherit;
     font-size: 1.3rem;
@@ -544,9 +548,10 @@ html{
     border: none;
     padding: 0;
     padding-right: 0.2em;
+    align-self: flex-start;
 }
-
-.task-input {
+.task-input,
+.task-name {
     width: 100%;
     font-family: inherit;
     font-size: 1.3rem;
@@ -554,14 +559,9 @@ html{
     border: none;
     color: white;
     padding: 0;
+    padding-top: .1em;
+    white-space: pre-wrap;
 }
-
-.task-name {
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-}
-
 .task-item-container button {
     font-family: inherit;
     font-size: 1rem;
@@ -570,7 +570,6 @@ html{
     color: white;
     cursor: pointer;
 }
-
 .done-button {
     margin-right: 2em;
 }

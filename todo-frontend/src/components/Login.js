@@ -31,9 +31,12 @@ const Login = ({ email, setEmail, setToken }) => {
       } else {
         console.log(data.detail[0].msg)
         setInvalidCredentials(true)
+        setToken('')
       }
     } catch (error) {
       console.log('Error while Login: ', error.message)
+      setInvalidCredentials(true)
+      setToken('')
     }
   }
   return (

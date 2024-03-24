@@ -15,8 +15,9 @@ const TaskItem = ({ token, task, setTasks, taskNumber }) => {
   }, [isEditable])
 
   const handleUpdateClick = async () => {
-    if (inputValue !== '') {
-      await handleTaskUpdate()
+    const trimmedInputValue = inputValue.trim()
+    if (trimmedInputValue !== '') {
+      await handleTaskUpdate(trimmedInputValue)
     }
   }
   const handleEnterKeyPress = async (e) => {
@@ -24,8 +25,8 @@ const TaskItem = ({ token, task, setTasks, taskNumber }) => {
       await handleTaskNameBlur()
     }
   }
-  const handleTaskUpdate = async () => {
-    const updatedTask = { ...task, name: inputValue }
+  const handleTaskUpdate = async (trimmedInputValue) => {
+    const updatedTask = { ...task, name: trimmedInputValue }
 
     try {
       const response = await fetch(`${serverAddr}/update_task`, {

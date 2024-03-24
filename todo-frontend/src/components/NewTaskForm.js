@@ -17,6 +17,7 @@ const NewTaskForm = ({ token, tasks, setTasks }) => {
   const handleCreateTask = async (e) => {
     e.preventDefault()
     const trimmedTaskName = newTask.name.trim()
+    // console.log(trimmedTaskName)
     if (trimmedTaskName === '') {
       return
     }
@@ -29,9 +30,14 @@ const NewTaskForm = ({ token, tasks, setTasks }) => {
       const data = await response.json()
       console.log(data)
       if (response.ok) {
-        const taskWithId = { ...newTask, id: data.id }
-        console.log(taskWithId)
+        const taskWithId = {
+          id: data.id,
+          name: trimmedTaskName,
+          status: newTask.status,
+        }
+        // console.log(taskWithId)
         setTasks((prevTasks) => [...prevTasks, taskWithId])
+        // console.log(tasks)
         setNewTask((prevState) => ({ ...prevState, name: '', id: 0 }))
       } else {
         console.log(data.detail[0].msg)
